@@ -1,0 +1,29 @@
+- name: Add ssh user keys
+  authorized_key: user={{ item.name }} key="{{ item.key }}"
+  with_items: ssh_users
+
+- name: Some software should be installed
+  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  with_items:
+    - sudo
+    - openssh-server
+    - ntp
+    - ssh
+    - vim
+    - debian-keyring
+    - debian-archive-keyring
+  sudo: yes
+
+- name: Put user in sudo group
+  user: name={{ item.name }} groups=sudo
+  sudo: yes
+  with_items: ssh_users
+
+- name: Set timezone variables
+  copy: content='{{timezone}}\n'
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+  sudo: yes

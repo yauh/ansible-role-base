@@ -1,0 +1,6 @@
+---
+# defaults file for yauh.base
+ssh_users:
+  - name: ansible
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+timezone: Europe/Berlin
