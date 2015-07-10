@@ -1,5 +1,5 @@
 # yauh.base
-Ansible role for fundamental server configuration and set up
+Ansible role for basic configuration settings
 
 ## Requirements
 SSH access to the remote machine

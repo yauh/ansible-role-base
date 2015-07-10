@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Stephan Hochhaus
-  description: Base server configuration and set up
+  description: Basic configuration settings
   company: freelance
   license: BSD
   min_ansible_version: 1.7

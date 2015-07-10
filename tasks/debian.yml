@@ -12,6 +12,7 @@
     - vim
     - debian-keyring
     - debian-archive-keyring
+    - ca-certificates
   sudo: yes
 
 - name: Put user in sudo group
