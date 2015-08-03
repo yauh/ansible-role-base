@@ -10,14 +10,13 @@
     - ntp
     - ssh
     - vim
+    - locate
     - debian-keyring
     - debian-archive-keyring
     - ca-certificates
-  sudo: yes
 
 - name: Put user in sudo group
   user: name={{ item.name }} groups=sudo
-  sudo: yes
   with_items: ssh_users
 
 - name: Set timezone variables
@@ -27,4 +26,3 @@
         group=root
         mode=0644
         backup=yes
-  sudo: yes
