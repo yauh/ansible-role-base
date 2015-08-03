@@ -1,6 +1,6 @@
 ---
 # defaults file for yauh.base
-ssh_users:
-  - name: ansible
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+deployment_user: ansible # user on remote system used for deployments
+authorized_keys:
+  - public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 timezone: Europe/Berlin

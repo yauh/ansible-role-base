@@ -1,6 +1,12 @@
+- name: Add a deployment user
+  user: name={{ deployment_user }} shell=/bin/bash groups=sudo append=yes
+
+- name: Add ssh key for deployment user
+  user: name={{ deployment_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+
 - name: Add ssh user keys
-  authorized_key: user={{ item.name }} key="{{ item.key }}"
-  with_items: ssh_users
+  authorized_key: user={{ deployment_user }} key="{{ item.public_key }}"
+  with_items: authorized_keys
 
 - name: Some software should be installed
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
@@ -15,12 +21,8 @@
     - debian-archive-keyring
     - ca-certificates
 
-- name: Put user in sudo group
-  user: name={{ item.name }} groups=sudo
-  with_items: ssh_users
-
 - name: Set timezone variables
-  copy: content='{{timezone}}\n'
+  copy: content='{{ timezone }}\n'
         dest=/etc/timezone
         owner=root
         group=root
