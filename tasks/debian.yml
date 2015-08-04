@@ -1,5 +1,5 @@
 - name: Add a deployment user
-  user: name={{ deployment_user }} shell=/bin/bash groups=sudo append=yes
+  user: name={{ deployment_user }} shell=/bin/bash password={{ deployment_user_password }} groups=sudo append=yes
 
 - name: Add ssh key for deployment user
   user: name={{ deployment_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
@@ -20,6 +20,7 @@
     - debian-keyring
     - debian-archive-keyring
     - ca-certificates
+    - language-pack-UTF-8
 
 - name: Set timezone variables
   copy: content='{{ timezone }}\n'
