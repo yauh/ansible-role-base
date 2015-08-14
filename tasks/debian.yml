@@ -21,7 +21,6 @@
     - debian-archive-keyring
     - ca-certificates
     - language-pack-en
-    - language-pack-UTF-8
 
 - name: Set timezone variables
   copy: content='{{ timezone }}\n'
