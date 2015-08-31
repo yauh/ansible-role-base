@@ -10,17 +10,7 @@
 
 - name: Some software should be installed
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
-  with_items:
-    - sudo
-    - openssh-server
-    - ntp
-    - ssh
-    - vim
-    - locate
-    - debian-keyring
-    - debian-archive-keyring
-    - ca-certificates
-    - language-pack-en
+  with_items: base_install_packages
 
 - name: Set timezone variables
   copy: content='{{ timezone }}\n'
