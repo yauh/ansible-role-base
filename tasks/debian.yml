@@ -1,3 +1,6 @@
+- name: Change root password
+  user: name=root password="{{ root_user_password }}"
+
 - name: Add a deployment user
   user: name={{ deployment_user }} shell=/bin/bash password={{ deployment_user_password }} groups=sudo append=yes
 

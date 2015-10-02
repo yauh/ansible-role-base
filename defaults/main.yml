@@ -14,6 +14,7 @@ base_install_packages:
   - ca-certificates
   - language-pack-en
 deployment_user_password: $6$NoH3ssCjH$1kF2k7scCIM00hV4EqkkHrxltJnznVJo8oNsELADWfyIEjWlj4We.w/DhHb/0ACrAr9CtTR0Ch6R8/ktUpxPH0 # password
+root_user_password: $1$d7dSH$lyCQtZG3NoWhJyVNCWxpO1 # password
 authorized_keys:
   - public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 timezone: Europe/Berlin
