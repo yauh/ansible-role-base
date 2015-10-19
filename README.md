@@ -5,14 +5,31 @@ Ansible role for basic configuration settings
 SSH access to the remote machine
 
 ## Role Variables
-`ssh_users` is an array of users with a `name` and `key` attribute. `name` is the name of the local user on the server, `key` contains a reference to a public ssh key. All users from this array will be able to perform the `sudo` command.
+`deployment_user` is the name of the user that will be used for all ansible-activioty on the remote machine. In order to set their password use use mkpasswd --method=SHA-512`to create passwords. The default password is`password`. The`deployment_user`is also able to execute`sudo`. By default the current user's public key will also be added to the remote server for the`deployment_user`.
+
+`base_install_packages` contains a list of packages that are part of the base installation of the server.
 
 `timezone` is the timezone used for the server's internal time and date.
 
 ```
-ssh_users:
-  - name: ansible
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+deployment_user: ansible # user on remote system used for deployments
+deployment_user_password: $1$d7dSH$lyCQtZG3NoWhJyVNCWxpO1 # password
+root_user_password: $1$d7dSH$lyCQtZG3NoWhJyVNCWxpO1 # password
+
+authorized_keys:
+  - public_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+base_install_packages:
+  - sudo
+  - openssh-server
+  - ntp
+  - ssh
+  - vim
+  - locate
+  - debian-keyring
+  - debian-archive-keyring
+  - ca-certificates
+  - language-pack-en
 timezone: Europe/Berlin
 ```
 
