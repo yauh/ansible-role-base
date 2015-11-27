@@ -15,6 +15,9 @@
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
   with_items: base_install_packages
 
+- name: Upgrade existing packages
+  apt: upgrade=full
+
 - name: Set timezone variables
   copy: content='{{ timezone }}\n'
         dest=/etc/timezone
