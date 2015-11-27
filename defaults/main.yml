@@ -21,3 +21,4 @@ base_install_packages:
   - language-pack-en
 
 timezone: Europe/Berlin
+lang: en_US.UTF-8

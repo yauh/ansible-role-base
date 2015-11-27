@@ -18,6 +18,15 @@
 - name: Upgrade existing packages
   apt: upgrade=full
 
+- name: Set language
+  lineinfile:
+    dest=/etc/environment
+    state=present
+    line='{{ item }}'
+  with_items:
+    - "LC_ALL={{lang}}"
+    - "LANG={{lang}}"
+
 - name: Set timezone variables
   copy: content='{{ timezone }}\n'
         dest=/etc/timezone
